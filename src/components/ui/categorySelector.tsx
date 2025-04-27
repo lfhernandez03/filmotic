@@ -1,5 +1,6 @@
-import React from 'react'
+import React, {useState} from 'react'
 import { Button } from "@/components/ui/button";
+import { cn } from "@/lib/utils";
 
 type Category = {
     genreId: Array<number>;
@@ -18,13 +19,29 @@ const categories: Category[] = [
   ]
 
 const CategorySelector = () => {
-  return (
-    <div>
-        <h2 className="text-2xl font-bold mb-4">Selecciona una categoría</h2>
-        <div className="flex flex-wrap gap-4">
-            <Button className="px-4 py-2 border-2 bg-white text-black border-slate-400 shadow-md rounded-full hover:bg-blue-50">Acción</Button>
+    const [selectedCategory, setSelectedCategory] = useState("all")
+
+    return (
+      <div className="w-full overflow-x-auto py-4">
+        <div className="flex space-x-2 min-w-max px-2">
+          {categories.map((category) => (
+            <Button
+              key={category.genreId[0]}
+              variant="outline"
+              className={cn(
+                "flex items-center gap-2 rounded-full px-4 py-2 transition-all",
+                selectedCategory === category.genreId[0].toString()
+                  ? `${category.color} border-2 border-slate-400 shadow-md`
+                  : "bg-white hover:bg-slate-100",
+              )}
+              onClick={() => setSelectedCategory(category.genreId[0].toString())}
+            >
+              <span className="text-xl">{category.emoji}</span>
+              <span className="font-medium">{category.name}</span>
+            </Button>
+          ))}
         </div>
-    </div>
+      </div>
   )
 }
 
