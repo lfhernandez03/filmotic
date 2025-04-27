@@ -1,7 +1,6 @@
 import Link from "next/link";
 import React, { useState } from "react";
 import { Button } from "@/components/ui/button";
-import ThemeToggle from "@/components/ui/darkModeToggle";
 import { Heart, House, Menu, X } from "lucide-react";
 import { cn } from "@/lib/utils";
 
@@ -17,7 +16,7 @@ const NavBar = () => {
       <div className="w-full border-b border-gray-200 shadow-sm">
         <div className="sticky flex justify-between items-center z-50 top-0 w-full mx-auto px-6 sm:px-12 lg:px-16 xl:px-20 py-2 md:text-sm">
           {/* Título de la aplicación */}
-          <Link href={"/"} className="font-bold text-primary-text dark:text-dark-text">
+          <Link href={"/"} className="font-bold text-primary-text">
             <span>Filmotic</span>
           </Link>
 
@@ -37,7 +36,7 @@ const NavBar = () => {
               <li>
                 <Link
                   href={"/"}
-                  className="text-primary-text hover:text-primary-hover dark:text-dark-text dark:hover:text-dark-hover"
+                  className="text-primary-text hover:text-primary-hover"
                 >
                   Inicio
                 </Link>
@@ -45,17 +44,16 @@ const NavBar = () => {
               <li>
                 <Link
                   href={"/movies"}
-                  className="text-primary-text hover:text-primary-hover dark:text-dark-text dark:hover:text-dark-hover"
+                  className="text-primary-text hover:text-primary-hover "
                 >
                   Favoritos
                 </Link>
               </li>
             </ul>
             <div>
-              <ThemeToggle /> {/* Componente para cambiar el tema */}
-            </div>
-            <div>
-              <Button className="text-white bg-primary-button hover:bg-primary-button-hover dark:bg-dark-button dark:hover:bg-dark-button">
+              <Button 
+                variant="default"
+                >
                 Iniciar Sesión
               </Button>
             </div>
@@ -72,7 +70,7 @@ const NavBar = () => {
           {/* Navegación para pantallas pequeñas */}
           <div
             className={cn(
-              "fixed top-0 right-0 w-[75%] h-full z-50 border-l shadow-lg md:hidden transition-all duration-300 ease-in-out transform",
+              "fixed top-0 right-0 w-[75%] h-full z-50 bg-white border-l shadow-lg md:hidden transition-all duration-300 ease-in-out transform",
               isOpen
                 ? "translate-x-0 opacity-100"
                 : "translate-x-full opacity-0 pointer-events-none"
@@ -83,7 +81,7 @@ const NavBar = () => {
                 <li className="w-full">
                   <Link
                     href="/"
-                    className="w-full flex justify-center items-center gap-2 px-4 py-2 hover:bg-blue-50 rounded-md text-center dark:hover:bg-blue-900"
+                    className="w-full flex justify-center items-center gap-2 px-4 py-2 hover:bg-blue-50 rounded-md text-center"
                     onClick={toggleMenu}
                   >
                     <House className="h-4 w-4" />
@@ -96,7 +94,7 @@ const NavBar = () => {
                 <li className="w-full">
                   <Link
                     href="/favorites"
-                    className="w-full flex justify-center items-center gap-2 px-4 py-2 hover:bg-blue-50 rounded-md dark:hover:bg-blue-900"
+                    className="w-full flex justify-center items-center gap-2 px-4 py-2 hover:bg-blue-50 rounded-md"
                     onClick={toggleMenu}
                   >
                     <Heart className="h-4 w-4" />
@@ -106,7 +104,9 @@ const NavBar = () => {
                 <hr className="border-gray-300" />
               </ul>
               <div className="mt-auto px-4 py-4">
-                <Button className="w-full text-white bg-primary-button hover:bg-primary-button-hover dark:bg-dark-button dark:hover:bg-dark-button">
+                <Button 
+                variant="default"
+                className="w-full">
                   Iniciar Sesión
                 </Button>
               </div>
