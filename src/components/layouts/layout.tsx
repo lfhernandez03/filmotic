@@ -1,6 +1,4 @@
 import React from "react";
-import "@/styles/globals.css";
-import "@/styles/themes.css";
 import { inter } from "@/styles/fonts";
 import NavBar from "@/modules/navbar";
 import Head from "next/head";
